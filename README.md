@@ -182,3 +182,31 @@ Seleccione la cantidad de estrellas para evaluar el producto.
 - **Nombre***  
 - **Correo electrónico***
 [Comprar](#)
+
+
+
+
+
+
+
+
+1.LOGIN 
+# 🔐 Login - Sistema Interno | Empresa de Servindustria 
+> Bienvenido a Servindustria Extintores y Fumigaciones E.I.R.L. 
+> Por favor, inicia sesión con tus credenciales para continuar. --- 
+## 👤 Iniciar sesión 
+**Usuario**   
+Nombre de usuario aqui 
+**Contraseña**   
+Contraseña aqui 
+[Iniciar sesión](#)   --- 
+### ❓ ¿Olvidaste tu contraseña? 
+�
+� [Haz clic aquí para restablecerla](#)   --- 
+### 🆕 ¿No tienes una cuenta? 
+[ Registrarse como nuevo usuario ](#)   --- 
+## 🧯 Sobre Servindustria 
+**Servindustria** es una empresa dedicada a la **venta, mantenimiento y recarga de extintores**, 
+comprometida con la seguridad contra incendios y el cumplimiento de normativas peruanas e internacionales. --- 
+## 📞 Contacto 
+- 📧 **Correo:** servindu.rojas@gmail.com   - 📱 **Teléfono:** 533-0912/922 145 930   - 🌐 **Sitio web:** [www.servindustria.com](https://www.servindustria.com)
