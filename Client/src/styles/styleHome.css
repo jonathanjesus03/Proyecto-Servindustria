@@ -1,0 +1,51 @@
+.SMALL_MUL {
+  font-family: "Mulish", sans-serif;
+  font-size: 15px;
+}
+
+.MEDIUM_MUL {
+  font-family: "Mulish", sans-serif;
+  font-size: 20px;
+}
+
+.LARGE_MUL {
+  font-family: "Mulish", sans-serif;
+  font-size: 32px;
+}
+
+@media (min-width: 768px) {
+  .LARGE_MUL {
+    font-size: 44px;
+  }
+}
+
+.MEDIUM_MUL {
+  font-family: "Mulish", sans-serif;
+  font-size: 16px;
+}
+
+@media (min-width: 768px) {
+  .MEDIUM_MUL {
+    font-size: 20px;
+  }
+}
+
+.EXTRA_SMALL {
+  font-family: "Quicksand", sans-serif;
+  font-size: 12px;
+}
+
+.SMALL {
+  font-family: "Quicksand", sans-serif;
+  font-size: 13px;
+}
+
+.MEDIUM {
+  font-family: "Quicksand", sans-serif;
+  font-size: 1rem;
+}
+
+.LARGE {
+  font-family: "Quicksand", sans-serif;
+  font-size: 1.2rem;
+}

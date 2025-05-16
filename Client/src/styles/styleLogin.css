@@ -1,0 +1,52 @@
+/* Tamaños de texto */
+.SMALL_MUL {
+  font-family: "Mulish", sans-serif;
+  font-size: 16px;
+}
+
+.EXTRA_SMALL {
+  font-family: "Quicksand", sans-serif;
+  font-size: 12px;
+}
+
+.SMALL {
+  font-family: "Quicksand", sans-serif;
+  font-size: 13px;
+}
+
+.MEDIUM {
+  font-family: "Quicksand", sans-serif;
+  font-size: 1rem;
+}
+
+.LARGE {
+  font-family: "Quicksand", sans-serif;
+  font-size: 1.2rem;
+}
+
+/* Cajas de tamaño */
+.BOX_REAR {
+  width: 100%;
+  height: auto;
+}
+
+@media (min-width: 1024px) {
+  .BOX_REAR {
+    width: 1000px;
+    height: 530px;
+  }
+
+  .BOX_INNER,
+  .BOX_IMG {
+    width: 50%;
+    height: 100%;
+  }
+}
+
+.BG_IMG {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "date": "2 de enero del 2025",
+    "nameProduct": "🔥 Extintores multipropósito ABC",
+    "img": "/img_prudcts/product1.png",
+    "category": "extintores"
+  },
+  {
+    "date": "22 de Enero de 2025",
+    "nameProduct": "📛 Señalética de seguridad industrial",
+    "img": "/img_prudcts/product2.png",
+    "category": "servicios"
+  },
+  {
+    "date": "22 de Diciembre de 2024",
+    "nameProduct": "🧯 Sistema de detección y supresión de incendios",
+    "img": "/img_prudcts/product3.png",
+    "category": "servicios"
+  },
+  {
+    "date": "2 de enero del 2025",
+    "nameProduct": "🔥 Extintores multipropósito ABC",
+    "img": "/img_prudcts/product1.png",
+    "category": "extintores"
+  },
+  {
+    "date": "22 de Enero de 2025",
+    "nameProduct": "📛 Señalética de seguridad industrial",
+    "img": "/img_prudcts/product2.png",
+    "category": "servicios"
+  },
+  {
+    "date": "22 de Diciembre de 2024",
+    "nameProduct": "🧯 Sistema de detección y supresión de incendios",
+    "img": "/img_prudcts/product3.png",
+    "category": "servicios"
+  }
+]
