@@ -13,6 +13,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.GetMapping;
 
 
 @RestController
@@ -23,13 +25,23 @@ public class AuthController {
 
     @PostMapping(value="login")
     public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request){
+        return authService.login(request);
 
-        return ResponseEntity.ok(authService.login(request));
     }
 
-    
+    @GetMapping(value="isAuthenticated")
+    public ResponseEntity<AuthResponse> isAuthenticated(@CookieValue(value = "token") String token){
+        return authService.isAuthenticated(token);
+    }
+
+    @PostMapping(value="logout")
+    public ResponseEntity<AuthResponse> logout(@CookieValue(value = "token") String token){
+        return authService.logout(token);
+    }
+
+
     @PostMapping(value="register")
     public ResponseEntity<AuthResponse> register(@RequestBody RegisterRequest request){
-        return ResponseEntity.ok(authService.register(request));
+        return authService.register(request);
     }
 }

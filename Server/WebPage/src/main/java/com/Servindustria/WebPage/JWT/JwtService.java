@@ -29,7 +29,7 @@ public class JwtService {
         .setClaims(extractClaims)
         .setSubject(user.getUsername())
         .setIssuedAt(new Date(System.currentTimeMillis()))
-        .setExpiration(new Date(System.currentTimeMillis()+1000*60*24))
+        .setExpiration(new Date(System.currentTimeMillis()+1000 * 60 * 60 * 24))
         .signWith (getKey(), SignatureAlgorithm.HS256)
         .compact();
     }
@@ -47,6 +47,15 @@ public class JwtService {
     public boolean isTokenValid(String token, UserDetails userDetails) {
         final String email = getEmailFromToken(token);
         return (email.equals(userDetails.getUsername()) && !isTokenExpired(token));
+    }
+
+    public boolean isTokenValid(String token){
+        try{
+            getAllClaims(token);
+            return !isTokenExpired(token);
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     private Claims getAllClaims(String token){

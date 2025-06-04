@@ -1,54 +1,80 @@
 import "../styles/styleCatalog.css";
 import Navbar from "../components/navbar/Navbar";
 import calendar_icon from "../assets/Images/Icons/outline/calendar-outline.svg";
+import Cart from "./Cart/Cart";
 import { Button } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useCart } from "./Cart/Hook/useCart";
 
 export async function fetchProducts() {
   const response = await fetch("http://localhost:8080/api/product");
   if (!response.ok) throw new Error("Error al cargar productos");
+  return (await response.json()) as Product[];
+}
+
+export async function fetchCategory() {
+  const response = await fetch("http://localhost:8080/api/category");
+  if (!response.ok) throw new Error("Error al cargar categorias");
   return await response.json();
 }
 
 type Product = {
   id: number;
-  descripcion: string;
-  img: string;
-  idCategoria: number;
-  tipo: string;
+  cod: string;
+  type: string;
+  description: string;
+  stock: number;
+  price: number;
+  idCategory: number;
+  idInventory?: number;
+  height?: string;
+  length?: string;
+  depth?: string;
+  brand?: string;
+  model?: string;
+  img?: string;
+  application?: string;
+  effect?: string;
+  content?: string;
+  observations?: string;
+};
+
+type Category = {
+  id: number;
+  nombre: string;
 };
 
 function catalogPages() {
-  const [selectedcategory, setSelectedcategory] = useState(0);
+  const [filter, setFilter] = useState(0);
   const [isShowedCategories, setShowedCategories] = useState(false);
   const [products, setProducts] = useState<Product[]>([]);
+  const [categories, setCategories] = useState<Category[]>([]);
+  const { addToCart } = useCart();
 
   useEffect(() => {
     fetchProducts()
       .then((data) => setProducts(data))
-      .catch((error) => console.error("Error:", error));
+      .catch((error) => console.error("Error con productos:", error));
   }, []);
 
-  const filteredProducts =
-    selectedcategory === 0
-      ? products
-      : products.filter((p) => p.idCategoria === selectedcategory);
+  useEffect(() => {
+    fetchCategory()
+      .then((data) => setCategories(data))
+      .catch((error) => console.error("Error con categorias:", error));
+  }, []);
 
-  const categoryMap: { [key: string]: number } = {
-    Extintores: 1,
-    Alarmas: 2,
-    Botiquines: 3,
-    Señales: 4,
-    "Luz de emergencia": 5,
-    "Confección de planos": 6,
-    Certificados: 7,
-    Capacitaciones: 8,
+  const filterProducts = () => {
+    return products.filter((product) => {
+      return product.idCategory === filter || filter === 0;
+    });
   };
+  const filteredProducts = filterProducts();
 
   return (
     <div id="catalog" className="page">
       <Navbar />
+      <Cart></Cart>
       <div className="min-h-screen py-5 px-4 space-y-12">
         <section className="flex flex-col w-full items-center gap-2 text-center">
           <div className="flex flex-wrap justify-center gap-2">
@@ -100,17 +126,17 @@ function catalogPages() {
                 </div>
                 {isShowedCategories && (
                   <ul className="mt-2 space-y-2">
-                    {Object.entries(categoryMap).map(([name, id]) => (
-                      <li key={id}>
+                    {categories.map((category) => (
+                      <li key={category.id}>
                         <button
-                          onClick={() => setSelectedcategory(id)}
+                          onClick={() => setFilter(category.id)}
                           className={`w-full text-left px-4 py-2 rounded-md transition-all ${
-                            selectedcategory === id
+                            filter === category.id
                               ? "bg-[#FE3051] text-white font-semibold"
                               : "hover:bg-gray-100 text-gray-700"
                           }`}
                         >
-                          {name}
+                          {category.nombre}
                         </button>
                       </li>
                     ))}
@@ -122,11 +148,10 @@ function catalogPages() {
 
           {/* PRODUCTOS */}
           <div className="flex-1">
-            {selectedcategory !== 0 && (
+            {filter !== 0 && (
               <h2 className="mb-4 text-center LARGE_MUL font-extrabold bg-gradient-to-b from-[#FF6074] to-[#ff002b] bg-clip-text text-transparent">
-                {Object.keys(categoryMap).find(
-                  (name) => categoryMap[name] === selectedcategory
-                ) ?? ""}
+                {categories.find((category) => category.id === filter)
+                  ?.nombre ?? ""}
               </h2>
             )}
             <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
@@ -139,7 +164,7 @@ function catalogPages() {
                     <div className="h-[50%] w-full">
                       <img
                         className="w-full h-full object-cover"
-                        src={`http://localhost:8080/img_products/${item.tipo}.png`}
+                        src={`http://localhost:8080/img_products/${item.type}.png`}
                         alt="productImg"
                       />
                     </div>
@@ -154,14 +179,29 @@ function catalogPages() {
                           22 de Septiembre del 2025
                         </span>
                       </div>
-                      <h1 className="text-[16px] font-bold">{item.tipo}</h1>
+                      <h1 className="text-[16px] font-bold">{item.type}</h1>
                       <p className="text-[11px] min-h-5 h-[36px] line-clamp-2">
-                        {item.descripcion}
+                        {item.description}
                       </p>
                       <div className="flex justify-center gap-2 mt-1">
                         <Button
                           className="text-base lg:text-sm rounded-full lg:px-2 px-1 py-1 lg:py-1 bg-gradient-to-b from-[#ec5d5d] to-[#FE3051]"
                           placeholder={undefined}
+                          onClick={() =>
+                            addToCart({
+                              imgItem: `http://localhost:8080/img_products/${item.type}.png`,
+                              title: item.type,
+                              amount: 1,
+                              id: item.id,
+                              price: item.price,
+                              cod: item.cod,
+                              stock: item.stock,
+                              type: item.type,
+                              description: item.description,
+                              idCategory: item.idCategory,
+                              idInventory: item.idInventory,
+                            })
+                          }
                           onPointerEnterCapture={undefined}
                           onPointerLeaveCapture={undefined}
                         >

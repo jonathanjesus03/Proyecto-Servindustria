@@ -100,7 +100,35 @@
    			<artifactId>jakarta.validation-api</artifactId>
     		<version>3.0.0</version>
 		</dependency>
+		<!-- Apache POI core -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>5.4.1</version>
+		</dependency>
+
+		<!-- Apache POI para archivos .xlsx (formato OOXML) -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>5.4.1</version>
+		</dependency>
+				
+	<dependency>
+    	<groupId>com.itextpdf</groupId>
+    	<artifactId>itext7-core</artifactId>
+    	<version>7.2.5</version>
+    	<type>pom</type>
+	</dependency>
 	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>itext</id>
+			<name>iText Repository</name>
+			<url>https://repo.itextsupport.com/releases/</url>
+		</repository>
+	</repositories>
 
 	<build>
 		<plugins>

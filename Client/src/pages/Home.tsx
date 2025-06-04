@@ -32,7 +32,7 @@ const Home = () => {
               bienestar en el entorno laboral.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link to={"/login"}>
+              <Link to={"/cotizar"}>
                 <Button
                   id="buttonQuoted"
                   className="dashButton text-md bg-gradient-to-r from-[#ff7c7c] to-[#ff002b] font-semibold"
