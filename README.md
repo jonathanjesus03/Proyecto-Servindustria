@@ -28,7 +28,7 @@ El propósito principal de esta aplicación es facilitar la gestión de inventar
 │       │   │   ├── java/       # Código Java (paquete com.Servindustria.WebPage)
 │       │   │   │   └── com/Servindustria/WebPage/
 │       │   │   │       ├── Auth/       # Autenticación (JWT)
-│       │   │   │       ├── Classes/    # Módulos de negocio (Category, Inventory, Product, Quote)
+│       │   │   │       ├── Modules/    # Módulos de negocio (Category, Inventory, Product, Quote)
 │       │   │   │       ├── Config/     # Configuraciones del servidor
 │       │   │   │       ├── Exception/  # Manejo de excepciones
 │       │   │   │       └── User/       # Gestión de usuarios
