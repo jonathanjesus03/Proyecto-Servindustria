@@ -11,7 +11,7 @@ Servindustria es una aplicación web diseñada para la gestión de inventarios y
 El propósito principal de esta aplicación es facilitar la gestión de inventarios y productos para una empresa, con una interfaz de usuario moderna y responsiva.
 
 ## Estructura del Proyecto
-'''
+```
 ├── Client
 │   ├── node_modules/           # Dependencias del frontend
 │   ├── public/                 # Recursos públicos (imágenes de productos, etc.)
@@ -36,7 +36,7 @@ El propósito principal de esta aplicación es facilitar la gestión de inventar
 │       │   └── test/           # Pruebas unitarias
 │       └── target/             # Archivos generados por Maven
 └── screenshots/                # Capturas de pantalla del proyecto
-'''
+```
 ## Tecnologías Utilizadas
 
 ### Frontend (Client)
