@@ -6,6 +6,7 @@ import { Button } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useCart } from "./Cart/Hook/useCart";
+import { RemoveFromCartIcon } from "../components/Icon";
 
 export async function fetchProducts() {
   const response = await fetch("http://localhost:8080/api/product");
@@ -47,10 +48,11 @@ type Category = {
 
 function catalogPages() {
   const [filter, setFilter] = useState(0);
+  const [search, setSearch] = useState("");
   const [isShowedCategories, setShowedCategories] = useState(false);
   const [products, setProducts] = useState<Product[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
-  const { addToCart } = useCart();
+  const { addToCart, productInCart, removeFromCart } = useCart();
 
   useEffect(() => {
     fetchProducts()
@@ -66,7 +68,11 @@ function catalogPages() {
 
   const filterProducts = () => {
     return products.filter((product) => {
-      return product.idCategory === filter || filter === 0;
+      const matchesCategory = filter === 0 || product.idCategory === filter;
+      const matchesSearch =
+        product.type.toLowerCase().includes(search.toLowerCase()) ||
+        product.description.toLowerCase().includes(search.toLowerCase());
+      return matchesCategory && matchesSearch;
     });
   };
   const filteredProducts = filterProducts();
@@ -94,7 +100,7 @@ function catalogPages() {
         <section className="flex flex-col lg:flex-row gap-10">
           {/* FILTROS */}
           <div className="w-full lg:w-[280px]">
-            <div className="flex flex-col border border-gray-300 shadow-xl rounded-3xl gap-5 py-5 px-4">
+            <div className="flex flex-col border border-gray-300 shadow-xl rounded-3xl gap-5 py-5 px-4 z-10">
               <h1 className="MEDIUM_MUL font-bold text-slate-800">
                 Buscar Producto
               </h1>
@@ -103,6 +109,8 @@ function catalogPages() {
                   className="w-full h-11 rounded-xl border border-gray-400 bg-white text-[#6D6D6D] text-[14px] px-5 font-mulish focus:outline-none focus:border-[#FE3051] focus:shadow-md"
                   type="text"
                   placeholder="Buscar Producto..."
+                  onChange={(e) => setSearch(e.target.value)}
+                  value={search}
                 />
                 <svg
                   className="absolute w-5 right-3 top-1/2 -translate-y-1/2"
@@ -154,7 +162,7 @@ function catalogPages() {
                   ?.nombre ?? ""}
               </h2>
             )}
-            <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 z-10">
               {filteredProducts.map((item) => (
                 <div
                   className="fContent_card flex justify-center items-center"
@@ -187,25 +195,31 @@ function catalogPages() {
                         <Button
                           className="text-base lg:text-sm rounded-full lg:px-2 px-1 py-1 lg:py-1 bg-gradient-to-b from-[#ec5d5d] to-[#FE3051]"
                           placeholder={undefined}
-                          onClick={() =>
-                            addToCart({
-                              imgItem: `http://localhost:8080/img_products/${item.type}.png`,
-                              title: item.type,
-                              amount: 1,
-                              id: item.id,
-                              price: item.price,
-                              cod: item.cod,
-                              stock: item.stock,
-                              type: item.type,
-                              description: item.description,
-                              idCategory: item.idCategory,
-                              idInventory: item.idInventory,
-                            })
-                          }
+                          onClick={() => {
+                            !productInCart(item.id)
+                              ? addToCart({
+                                  imgItem: `http://localhost:8080/img_products/${item.type}.png`,
+                                  title: item.type,
+                                  amount: 1,
+                                  id: item.id,
+                                  price: item.price,
+                                  cod: item.cod,
+                                  stock: item.stock,
+                                  type: item.type,
+                                  description: item.description,
+                                  idCategory: item.idCategory,
+                                  idInventory: item.idInventory,
+                                })
+                              : removeFromCart(item.id);
+                          }}
                           onPointerEnterCapture={undefined}
                           onPointerLeaveCapture={undefined}
                         >
-                          Llévatelo
+                          {productInCart(item.id) ? (
+                            <RemoveFromCartIcon />
+                          ) : (
+                            <span>Llévatelo</span>
+                          )}
                         </Button>
                         <Link to={`/productDetails/${item.id}`}>
                           <Button

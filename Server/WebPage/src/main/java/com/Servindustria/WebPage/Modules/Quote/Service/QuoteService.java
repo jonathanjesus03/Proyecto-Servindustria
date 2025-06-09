@@ -33,6 +33,7 @@ public class QuoteService {
     private final JwtService jwtService;
     private final InvoiceService invoiceService;
     private final QuoteDocument quoteDocument;
+    private final QuoteEmail quoteEmail;
 
     //Create
     public QuoteDto createQuote(QuoteDto dto) {
@@ -95,6 +96,7 @@ public class QuoteService {
         OutputStream os2 = new FileOutputStream("C:/Users/Samsung/Desktop/Proyecto-Servindustria/Documents/quote-"+ quoteToSave.getCod() +".docx");
         quoteDocument.generateQuoteWord(quoteToSave.getId(), os2);
         os2.close();
+        quoteEmail.SendEmailQuote(quoteToSave.getId());
     
     } catch (IOException e) {
         e.printStackTrace();

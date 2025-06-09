@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../../styles/styleHome.css";
+import { useAuth } from "../../pages/Login/context/AuthContext";
 
 type Props = {};
 
 const Navbar: React.FC<Props> = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { Logout, authenticated } = useAuth();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -19,7 +21,6 @@ const Navbar: React.FC<Props> = () => {
           Servindustria
         </p>
 
-        {/* Botón de hamburguesa (visible solo en móviles) */}
         <button
           className="md:hidden text-[#8291a3] focus:outline-none focus:ring-2 focus:ring-[#516070]"
           onClick={toggleMenu}
@@ -55,7 +56,7 @@ const Navbar: React.FC<Props> = () => {
         <ul
           className={`${
             isOpen ? "flex" : "hidden"
-          } md:flex flex-col md:flex-row gap-4 md:gap-8 lg:gap-16 absolute md:static top-12 left-0 w-full md:w-auto bg-white md:bg-transparent p-4 md:p-0 z-10 md:z-auto shadow-md md:shadow-none`}
+          } md:flex flex-col md:flex-row gap-4 md:gap-8 lg:gap-16 absolute md:static top-12 left-0 w-full md:w-auto bg-white md:bg-transparent p-4 md:p-0 z-30 md:z-30 shadow-md md:shadow-none`}
         >
           <li>
             <Link
@@ -63,7 +64,7 @@ const Navbar: React.FC<Props> = () => {
               className="SMALL_MUL font-normal text-[#8291a3] hover:text-[#FF6B6B] transition-colors duration-300"
               onClick={() => setIsOpen(false)}
             >
-              Inicio
+              Home
             </Link>
           </li>
           <li>
@@ -75,6 +76,19 @@ const Navbar: React.FC<Props> = () => {
               Catálogo
             </Link>
           </li>
+          {authenticated && (
+            <li>
+              <Link
+                to={"/cotizar"}
+                className="SMALL_MUL font-normal text-[#8291a3] hover:text-[#FF6B6B] transition-colors duration-300"
+                onClick={() => {
+                  setIsOpen(false);
+                }}
+              >
+                <span>Cotizar</span>
+              </Link>
+            </li>
+          )}
           <li>
             <Link
               to="/chatservis"
@@ -91,6 +105,27 @@ const Navbar: React.FC<Props> = () => {
               onClick={() => setIsOpen(false)}
             >
               Contáctanos
+            </Link>
+          </li>
+          <li>
+            <Link
+              to={authenticated ? "/" : "/login"}
+              className="SMALL_MUL font-normal text-[#8291a3] hover:text-[#FF6B6B] transition-colors duration-300"
+              onClick={() => {
+                if (authenticated) {
+                  setIsOpen(false);
+                  Logout();
+                  alert("Esperamos verte nuevamente");
+                } else {
+                  setIsOpen(false);
+                }
+              }}
+            >
+              {authenticated ? (
+                <span>Cerrar Sesión</span>
+              ) : (
+                <span>Iniciar Sesión</span>
+              )}
             </Link>
           </li>
         </ul>

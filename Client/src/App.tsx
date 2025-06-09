@@ -5,7 +5,7 @@ import Login from "./pages/Login/Login";
 import Home from "./pages/Home";
 import CatalogLayout from "./layouts/catalogLayout";
 import Catalog from "./pages/Catalog";
-import ChatServis from "./pages/ChatServis";
+import ChatServis from "./pages/ChatServis/ChatServis";
 import ChatServisLayout from "./layouts/chatbotLayout";
 import ProductViewPage from "./pages/ProductDetails";
 import ProductViewPageLayout from "./layouts/productViewLayout";

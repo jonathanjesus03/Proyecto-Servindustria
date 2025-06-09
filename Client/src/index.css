@@ -18,6 +18,12 @@
   font-style: normal;
 }
 
+iframe[src*="landbot"] {
+  bottom: 30px !important;
+  left: 30px !important;
+  right: auto !important;
+}
+
 /* ANIMATION EFFECTS */
 .transition_slap {
   transition: all 290ms ease-in-out;

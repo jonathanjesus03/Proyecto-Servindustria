@@ -1,12 +1,11 @@
 import { useRef } from "react";
 import Navbar from "../components/navbar/Navbar";
-import emailjs from "emailjs-com";
 import { useCart } from "./Cart/Hook/useCart";
 type Props = {};
 
 const Quote = ({}: Props) => {
   const formRef = useRef<HTMLFormElement>(null);
-  const { cart, clearCart } = useCart();
+  const { cart, clearCart, addToCart } = useCart();
 
   const handleCreateQuote = async () => {
     try {
@@ -38,24 +37,6 @@ const Quote = ({}: Props) => {
       }
       alert("¡Cotización creada exitosamente!");
       clearCart();
-      // Enviar state con emailjs
-      try {
-        if (formRef.current) {
-          const responseEmail = await emailjs.sendForm(
-            "service_fzne03j",
-            "template_nhwbjeq",
-            formRef.current,
-            "tbpX_sQ-YBU5KyYq2"
-          );
-
-          alert("¡Cotización enviada exitosamente! Revisa tu state.");
-        }
-      } catch (emailError) {
-        console.error("Error al enviar state:", emailError);
-        alert(
-          "La cotización fue enviada, pero ocurrió un error al enviar el state."
-        );
-      }
     } catch (error) {
       console.error("Error en la solicitud:", error);
       alert("Hubo un problema al enviar la cotización. Inténtalo nuevamente.");
@@ -73,6 +54,7 @@ const Quote = ({}: Props) => {
           <p className="max-w-[850px] font-light text-center text-[#8291a3]">
             Confirma tus productos y comenzaremos la cotización junto con el
             envio de tus productos por el medio mas fácil para ti.
+            <br /> ! Escoge los productos que deseas cotizar en Catálogo !
           </p>
         </section>
 
@@ -100,9 +82,18 @@ const Quote = ({}: Props) => {
                         <h3 className="text-lg font-semibold text-[#8291a3]">
                           {product.title}
                         </h3>
-                        <p className="text-sm text-[#8291a3]">
-                          Precio: ${product.price} | Cantidad: {product.amount}
-                        </p>
+                        <div className="flex gap-6 items-center">
+                          <p className="text-sm text-[#8291a3]">
+                            Precio: ${product.price} | Cantidad:{" "}
+                            {product.amount}
+                          </p>
+                          <button
+                            className=" px-3 py-1 bg-[#ff5b5b] text-[#fbc1c1] font-bold rounded hover:bg-[#f98f8f] transition"
+                            onClick={() => addToCart(product)}
+                          >
+                            +
+                          </button>
+                        </div>
                       </div>
                     </div>
                   </div>

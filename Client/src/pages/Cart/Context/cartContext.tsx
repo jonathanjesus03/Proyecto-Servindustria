@@ -25,6 +25,8 @@ type CartContextType = {
   setCart: Dispatch<SetStateAction<Product[]>>;
   addToCart: (newProduct: Product) => void;
   clearCart: () => void;
+  productInCart: (product: number) => boolean;
+  removeFromCart: (product: number) => void;
 };
 
 export const CartContext = createContext<CartContextType | undefined>(
@@ -54,8 +56,25 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     setCart([]);
   };
 
+  const productInCart = (productId: number) => {
+    return cart.findIndex((prod) => prod.id === productId) !== -1;
+  };
+
+  const removeFromCart = (productId: number) => {
+    setCart(cart.filter((product) => product.id !== productId));
+  };
+
   return (
-    <CartContext.Provider value={{ cart, setCart, addToCart, clearCart }}>
+    <CartContext.Provider
+      value={{
+        cart,
+        setCart,
+        addToCart,
+        clearCart,
+        productInCart,
+        removeFromCart,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );
