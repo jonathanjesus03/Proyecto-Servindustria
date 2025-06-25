@@ -57,7 +57,7 @@ const chatbotPage = ({}: Props) => {
           {/* Chatbox */}
           <div className="w-full max-w-2xl">
             <div className="flex justify-center items-center w-full bg-gradient-to-b from-[#ffcdcd] to-[#fe7575] rounded-[25px] p-6">
-              <ChatBot></ChatBot>
+              <LandbotChat></LandbotChat>
             </div>
           </div>
         </section>
