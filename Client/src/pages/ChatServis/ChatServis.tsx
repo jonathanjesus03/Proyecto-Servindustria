@@ -1,6 +1,7 @@
 import "../../styles/styleChatServis.css";
 import Navbar from "../../components/navbar/Navbar";
 import icon_chechMark from "../../assets/Images/Icons/outline/checkmark-circle.png";
+import ChatBot from "./ChatBot";
 import icon_chatb from "../../assets/Images/Icons/filled/icon_chatbot.svg";
 import icon_person from "../../assets/Images/Icons/outline/person-circle-outline.svg";
 import { Button } from "@material-tailwind/react";
@@ -56,7 +57,7 @@ const chatbotPage = ({}: Props) => {
           {/* Chatbox */}
           <div className="w-full max-w-2xl">
             <div className="flex justify-center items-center w-full bg-gradient-to-b from-[#ffcdcd] to-[#fe7575] rounded-[25px] p-6">
-              <LandbotChat></LandbotChat>
+              <ChatBot></ChatBot>
             </div>
           </div>
         </section>

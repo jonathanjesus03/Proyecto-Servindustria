@@ -15,6 +15,7 @@ import "./App.css";
 import { CartProvider } from "./pages/Cart/Context/cartContext";
 import { RouteProtected } from "./components/Routes/RouteProtected";
 import { AuthProvider } from "./pages/Login/context/AuthContext";
+import Payment from "./pages/Payment";
 function App() {
   return (
     <AuthProvider>
@@ -31,6 +32,7 @@ function App() {
               path="/chatservis"
               element={<ChatServis></ChatServis>}
             ></Route>
+            <Route path="/payment" element={<Payment></Payment>}></Route>
           </Route>
           {/*NEW LAYOUTS*/}
           <Route element={<ProductViewPageLayout></ProductViewPageLayout>}>

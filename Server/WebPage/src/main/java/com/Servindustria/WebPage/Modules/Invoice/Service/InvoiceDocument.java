@@ -88,7 +88,22 @@ public class InvoiceDocument {
         normalStyle.setFont(normalFont);
 
         int rowIdx = 0;
-
+        // --- Insertar imagen (logo) en la parte superior del Excel
+        try (InputStream is = getClass().getClassLoader().getResourceAsStream("static/images/logoFactura.png")) {
+            if (is != null) {
+            byte[] bytes = is.readAllBytes();
+            int pictureIdx = workbook.addPicture(bytes, Workbook.PICTURE_TYPE_PNG);
+            var helper = workbook.getCreationHelper();
+            var drawing = sheet.createDrawingPatriarch();
+            var anchor = helper.createClientAnchor();
+            anchor.setCol1(0);
+            anchor.setRow1(rowIdx);
+            anchor.setCol2(3);
+            anchor.setRow2(rowIdx + 6); 
+            drawing.createPicture(anchor, pictureIdx);
+            rowIdx += 6; 
+            }
+        }
         // --- Encabezado de empresa y factura ---
         Row companyRow = sheet.createRow(rowIdx++);
         var cell0 = companyRow.createCell(0);
@@ -246,9 +261,9 @@ public class InvoiceDocument {
             : companyClient.getNameReasonSoc();
         info.addCell(new Cell()
             .add(new Paragraph("RAZÓN SOCIAL: " + razonSocial).setBold())
-            .add(new Paragraph("RUC: " + (companyClient != null ? companyClient.getDocumentNumber() : "")))
-            .add(new Paragraph("DIRECCIÓN: " + (companyClient != null ? companyClient.getAddress() : "")))
-            .add(new Paragraph("TELÉFONO: " + (companyClient != null ? companyClient.getPhone1() : "")))
+            .add(new Paragraph("RUC: " + (companyClient != null ? companyClient.getDocumentNumber() : naturalClient.getDocumentNumber())))
+            .add(new Paragraph("DIRECCIÓN: " + (companyClient != null ? companyClient.getAddress() : "No Definido")))
+            .add(new Paragraph("TELÉFONO: " + (companyClient != null ? companyClient.getPhone1() : naturalClient.getPhone1())))
             .setBorder(Border.NO_BORDER)
             .setFontSize(9)
         );

@@ -1,0 +1,81 @@
+2025-06-10 09:01:53 [restartedMain] INFO  c.S.WebPage.WebPageApplication - Starting WebPageApplication using Java 20.0.2 with PID 13188 (C:\Users\Samsung\Desktop\Proyecto-Servindustria\Server\WebPage\target\classes started by Samsung in C:\Users\Samsung\Desktop\Proyecto-Servindustria)
+2025-06-10 09:01:53 [restartedMain] INFO  c.S.WebPage.WebPageApplication - No active profile set, falling back to 1 default profile: "default"
+2025-06-10 09:01:53 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2025-06-10 09:01:53 [restartedMain] INFO  o.s.b.d.e.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2025-06-10 09:01:55 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-06-10 09:01:55 [restartedMain] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 214 ms. Found 12 JPA repository interfaces.
+2025-06-10 09:01:57 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-06-10 09:01:57 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-06-10 09:01:57 [restartedMain] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-06-10 09:01:57 [restartedMain] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.40]
+2025-06-10 09:01:57 [restartedMain] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-06-10 09:01:57 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3738 ms
+2025-06-10 09:01:57 [restartedMain] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-06-10 09:01:57 [restartedMain] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.13.Final
+2025-06-10 09:01:57 [restartedMain] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-06-10 09:01:58 [restartedMain] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-06-10 09:01:58 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-06-10 09:01:59 [restartedMain] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection ConnectionID:1 ClientConnectionId: 50c07ba1-3be9-4635-99a0-1c5058e47d98
+2025-06-10 09:01:59 [restartedMain] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-06-10 09:01:59 [restartedMain] WARN  org.hibernate.orm.deprecation - HHH90000025: SQLServerDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-06-10 09:01:59 [restartedMain] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 16.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-06-10 09:02:01 [restartedMain] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-06-10 09:02:03 [restartedMain] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-06-10 09:02:03 [restartedMain] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-06-10 09:02:04 [restartedMain] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2025-06-10 09:02:04 [restartedMain] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used by Spring Security for automatically configuring username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider. If the current configuration is intentional, to turn off this warning, increase the logging level of 'org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer' to ERROR
+2025-06-10 09:02:05 [restartedMain] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-06-10 09:02:05 [restartedMain] INFO  o.s.v.b.OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Bean Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2025-06-10 09:02:06 [restartedMain] INFO  o.s.b.a.h.H2ConsoleAutoConfiguration - H2 console available at '/h2-console'. Database available at 'jdbc:sqlserver://localhost:1433;connectRetryInterval=10;connectRetryCount=1;maxResultBuffer=-1;sendTemporalDataTypesAsStringForBulkCopy=true;delayLoadingLobs=true;useFmtOnly=false;useBulkCopyForBatchInsert=false;cancelQueryTimeout=-1;sslProtocol=TLS;jaasConfigurationName=SQLJDBCDriver;statementPoolingCacheSize=0;serverPreparedStatementDiscardThreshold=10;enablePrepareOnFirstPreparedStatementCall=false;fips=false;socketTimeout=0;authentication=NotSpecified;authenticationScheme=nativeAuthentication;xopenStates=false;datetimeParameterType=datetime2;sendTimeAsDatetime=true;replication=false;trustStoreType=JKS;trustServerCertificate=true;TransparentNetworkIPResolution=true;iPAddressPreference=IPv4First;serverNameAsACE=false;sendStringParametersAsUnicode=true;selectMethod=direct;responseBuffering=adaptive;queryTimeout=-1;packetSize=8000;multiSubnetFailover=false;loginTimeout=30;lockTimeout=-1;lastUpdateCount=true;prepareMethod=prepexec;encrypt=true;disableStatementPooling=true;databaseName=NegocioWebIntegrado;columnEncryptionSetting=Disabled;applicationName=Microsoft JDBC Driver for SQL Server;applicationIntent=readwrite;'
+2025-06-10 09:02:06 [restartedMain] INFO  o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+2025-06-10 09:02:06 [restartedMain] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-06-10 09:02:06 [restartedMain] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-06-10 09:02:06 [restartedMain] INFO  c.S.WebPage.WebPageApplication - Started WebPageApplication in 13.895 seconds (process running for 14.737)
+2025-06-10 09:02:27 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-06-10 09:02:27 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-06-10 09:02:27 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 4 ms
+2025-06-10 09:02:28 [http-nio-8080-exec-1] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.bind.MissingRequestCookieException: Required cookie 'token' for method parameter type String is not present]
+2025-06-10 09:02:28 [http-nio-8080-exec-2] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.bind.MissingRequestCookieException: Required cookie 'token' for method parameter type String is not present]
+2025-06-10 09:10:22 [http-nio-8080-exec-10] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.bind.MissingRequestCookieException: Required cookie 'token' for method parameter type String is not present]
+2025-06-10 09:10:22 [http-nio-8080-exec-4] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.bind.MissingRequestCookieException: Required cookie 'token' for method parameter type String is not present]
+2025-06-10 10:17:33 [http-nio-8080-exec-3] INFO  c.S.WebPage.Auth.Service.AuthService - Intentando autenticación para el usuario: jesusjonathan@gmail.com
+2025-06-10 10:34:22 [http-nio-8080-exec-8] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.bind.MissingRequestCookieException: Required cookie 'token' for method parameter type String is not present]
+2025-06-10 10:34:22 [http-nio-8080-exec-6] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.bind.MissingRequestCookieException: Required cookie 'token' for method parameter type String is not present]
+2025-06-10 11:13:09 [http-nio-8080-exec-4] INFO  c.S.WebPage.Auth.Service.AuthService - Intentando registrar usuario con email: nalini.badillo@gmail.com
+2025-06-10 11:13:09 [http-nio-8080-exec-4] INFO  c.S.WebPage.Auth.Service.AuthService - Usuario registrado exitosamente: nalini.badillo@gmail.com
+2025-06-10 11:13:28 [http-nio-8080-exec-9] INFO  c.S.WebPage.Auth.Service.AuthService - Intentando autenticación para el usuario: nalini.badillo@gmail.com
+2025-06-10 11:13:28 [http-nio-8080-exec-9] INFO  c.S.WebPage.Auth.Service.AuthService - Autenticación exitosa para el usuario: nalini.badillo@gmail.com
+2025-06-10 11:13:28 [http-nio-8080-exec-3] INFO  c.S.WebPage.Auth.Service.AuthService - Intentando autenticación para el usuario: nalini.badillo@gmail.com
+2025-06-10 11:13:28 [http-nio-8080-exec-3] INFO  c.S.WebPage.Auth.Service.AuthService - Autenticación exitosa para el usuario: nalini.badillo@gmail.com
+2025-06-10 11:14:03 [http-nio-8080-exec-4] INFO  c.S.W.M.Quote.Service.QuoteEmail - Correo de cotización enviado a nalini.badillo@gmail.com
+2025-06-10 11:14:03 [Thread-7] INFO  c.S.W.M.Quote.Service.QuoteEmail - Intentando enviar correo de cotización a nalini.badillo@gmail.com
+2025-06-10 11:14:15 [Thread-7] ERROR c.S.W.M.Quote.Service.QuoteEmail - Ocurrio un problema con el mensaje -> nalini.badillo@gmail.com
+2025-06-10 11:16:44 [http-nio-8080-exec-7] INFO  c.S.W.M.Quote.Service.QuoteEmail - Correo de cotización enviado a nalini.badillo@gmail.com
+2025-06-10 11:16:44 [Thread-8] INFO  c.S.W.M.Quote.Service.QuoteEmail - Intentando enviar correo de cotización a nalini.badillo@gmail.com
+2025-06-10 11:16:57 [Thread-8] INFO  c.S.W.M.Quote.Service.QuoteEmail - Correo enviado correctamente a nalini.badillo@gmail.com
+2025-06-10 13:18:17 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h32m15s798ms909µs100ns).
+2025-06-10 17:08:44 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3h26s46ms363µs500ns).
+2025-06-10 18:51:23 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h42m47s406ms693µs900ns).
+2025-06-10 19:29:04 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=11m10s991ms23µs900ns).
+2025-06-10 19:35:05 [http-nio-8080-exec-4] INFO  c.S.WebPage.Auth.Service.AuthService - Intentando registrar usuario con email: davidalbertmjb@gmail.com
+2025-06-10 19:35:06 [http-nio-8080-exec-4] INFO  c.S.WebPage.Auth.Service.AuthService - Usuario registrado exitosamente: davidalbertmjb@gmail.com
+2025-06-10 19:37:11 [http-nio-8080-exec-10] INFO  c.S.WebPage.Auth.Service.AuthService - Intentando autenticación para el usuario: davidalbertmjb@gmail.com
+2025-06-10 19:37:11 [http-nio-8080-exec-10] INFO  c.S.WebPage.Auth.Service.AuthService - Autenticación exitosa para el usuario: davidalbertmjb@gmail.com
+2025-06-10 19:37:11 [http-nio-8080-exec-8] INFO  c.S.WebPage.Auth.Service.AuthService - Intentando autenticación para el usuario: davidalbertmjb@gmail.com
+2025-06-10 19:37:11 [http-nio-8080-exec-8] INFO  c.S.WebPage.Auth.Service.AuthService - Autenticación exitosa para el usuario: davidalbertmjb@gmail.com
+2025-06-10 19:37:57 [http-nio-8080-exec-8] INFO  c.S.W.M.Quote.Service.QuoteEmail - Correo de cotización enviado a davidalbertmjb@gmail.com
+2025-06-10 19:37:57 [Thread-9] INFO  c.S.W.M.Quote.Service.QuoteEmail - Intentando enviar correo de cotización a davidalbertmjb@gmail.com
+2025-06-10 19:38:09 [Thread-9] ERROR c.S.W.M.Quote.Service.QuoteEmail - Ocurrio un problema con el mensaje -> davidalbertmjb@gmail.com
+2025-06-10 19:40:10 [http-nio-8080-exec-3] INFO  c.S.W.M.Quote.Service.QuoteEmail - Correo de cotización enviado a davidalbertmjb@gmail.com
+2025-06-10 19:40:10 [Thread-10] INFO  c.S.W.M.Quote.Service.QuoteEmail - Intentando enviar correo de cotización a davidalbertmjb@gmail.com
+2025-06-10 19:40:26 [Thread-10] INFO  c.S.W.M.Quote.Service.QuoteEmail - Correo enviado correctamente a davidalbertmjb@gmail.com
+2025-06-10 19:58:51 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=6m45s717ms758µs200ns).
+2025-06-10 23:02:46 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3h33s605ms642µs900ns).
+2025-06-10 23:04:43 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m56s962ms416µs500ns).

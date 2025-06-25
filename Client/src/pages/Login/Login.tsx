@@ -140,40 +140,36 @@ function Login({}: Props) {
   type FormErrorLogin = {
     email?: string;
     password?: string;
+    [key: string]: string | undefined;
   };
 
   type FormErrorRegisterNatural = {
     name?: string;
     last_name?: string;
-    telephone1?: string;
-    telephone2?: string;
+    natural_telephone1?: string;
+    natural_telephone2?: string;
     birthDay?: string;
     gender?: string;
-    email_register?: string;
-    password_register?: string;
-    password_confirm?: string;
-    type_doc?: string;
-    doc?: string;
-    address?: string;
-    reference?: string;
-    nameReasonSoc?: string;
+    natural_email_register?: string;
+    natural_password_register?: string;
+    natural_password_confirm?: string;
+    natural_type_doc?: string;
+    natural_doc?: string;
+    [key: string]: string | undefined;
   };
 
   type FormErrorRegisterCompany = {
-    name?: string;
-    last_name?: string;
-    telephone1?: string;
-    telephone2?: string;
-    birthDay?: string;
-    gender?: string;
-    email_register?: string;
-    password_register?: string;
-    password_confirm?: string;
-    type_doc?: string;
-    doc?: string;
+    company_telephone1?: string;
+    company_telephone2?: string;
+    company_email_register?: string;
+    company_password_register?: string;
+    company_password_confirm?: string;
+    company_type_doc?: string;
+    company_doc?: string;
     address?: string;
     reference?: string;
     nameReasonSoc?: string;
+    [key: string]: string | undefined;
   };
 
   const [formErrorLogin, setFormErrorLogin] = useState<FormErrorLogin>({});
@@ -206,20 +202,25 @@ function Login({}: Props) {
 
     if (!formData.name.trim()) {
       errors.name = "El nombre es obligatorio.";
+    } else if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s]+$/.test(formData.name)) {
+      errors.name = "El nombre es inválido.";
+      errors.name = "El nombre es inválido.";
     }
 
     if (!formData.last_name.trim()) {
       errors.last_name = "El apellido es obligatorio.";
+    } else if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s]+$/.test(formData.last_name)) {
+      errors.last_name = "El apellido es inválido.";
     }
 
     if (!formData.natural_telephone1.trim()) {
       errors.telephone1 = "El número de teléfono es obligatorio.";
     } else if (!/^\d{7,15}$/.test(formData.natural_telephone1)) {
-      errors.telephone1 = "El número de teléfono no es válido.";
+      errors.natural_telephone1 = "El número de teléfono no es válido.";
     }
 
     if (!/^\d*$/.test(formData.natural_telephone2)) {
-      errors.telephone2 = "El número de teléfono es inválido.";
+      errors.natural_telephone2 = "El número de teléfono es inválido.";
     }
 
     if (!formData.birthDay.trim()) {
@@ -233,44 +234,44 @@ function Login({}: Props) {
     }
 
     if (!formData.natural_email_register.trim()) {
-      errors.email_register = "El correo electrónico es obligatorio.";
+      errors.natural_email_register = "El correo electrónico es obligatorio.";
     } else if (
       !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(
         formData.natural_email_register
       )
     ) {
-      errors.email_register = "Correo electrónico inválido.";
+      errors.natural_email_register = "Correo electrónico inválido.";
     }
 
     if (!formData.natural_password_register.trim()) {
-      errors.password_register = "La contraseña es obligatoria.";
+      errors.natural_password_register = "La contraseña es obligatoria.";
     } else if (formData.natural_password_register.length < 8) {
-      errors.password_register = "Debe tener al menos 8 caracteres.";
+      errors.natural_password_register = "Debe tener al menos 8 caracteres.";
     }
 
     if (
       formData.natural_password_confirm !== formData.natural_password_register
     ) {
-      errors.password_confirm = "Las contraseñas no coinciden.";
+      errors.natural_password_confirm = "Las contraseñas no coinciden.";
     }
 
     if (!/^(DNI|RUC)$/.test(formData.natural_type_doc)) {
-      errors.type_doc = "Debe seleccionar el tipo de documento.";
+      errors.natural_type_doc = "Debe seleccionar el tipo de documento.";
     }
 
     if (!formData.natural_doc.trim()) {
-      errors.doc = "El número de documento es obligatorio.";
+      errors.natural_doc = "El número de documento es obligatorio.";
     } else {
       if (
         formData.natural_type_doc === "DNI" &&
         !/^\d{8}$/.test(formData.natural_doc)
       ) {
-        errors.doc = "El DNI debe tener 8 dígitos.";
+        errors.natural_doc = "El DNI debe tener 8 dígitos.";
       } else if (
         formData.natural_type_doc === "RUC" &&
         !/^\d{11}$/.test(formData.natural_doc)
       ) {
-        errors.doc = "El RUC debe tener 11 dígitos.";
+        errors.natural_doc = "El RUC debe tener 11 dígitos.";
       }
     }
 
@@ -282,62 +283,72 @@ function Login({}: Props) {
     const errors: FormErrorRegisterCompany = {};
 
     if (!formData.nameReasonSoc.trim()) {
-      errors.name = "El Nombre/Razon es obligatorio.";
+      errors.nameReasonSoc = "El Nombre/Razon es obligatorio.";
+    } else if (!/^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s]+$/.test(formData.nameReasonSoc)) {
+      errors.nameReasonSoc = "El Nombre/Razon es inválido.";
     }
 
     if (!formData.reference.trim()) {
-      errors.name = "La referencia es obligatoria.";
+      errors.reference = "La referencia es obligatoria.";
+    } else if (!/^[0-9a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s]+$/.test(formData.reference)) {
+      errors.reference = "La referencia es inválida.";
     }
 
     if (!formData.address.trim()) {
-      errors.last_name = "La dirección es obligatoria.";
+      errors.address = "La dirección es obligatoria.";
+    } else if (!/^[0-9a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s]+$/.test(formData.address)) {
+      errors.address = "La referencia es inválida.";
     }
 
     if (!formData.company_telephone1.trim()) {
-      errors.telephone1 = "El número de teléfono es obligatorio.";
+      errors.company_telephone1 = "El número de teléfono es obligatorio.";
     } else if (!/^\d{7,15}$/.test(formData.company_telephone1)) {
-      errors.telephone1 = "El número de teléfono no es válido.";
+      errors.company_telephone1 = "El número de teléfono no es válido.";
+    }
+
+    if (!/^\d*$/.test(formData.company_telephone2)) {
+      errors.company_telephone2 = "El número de teléfono es inválido.";
     }
 
     if (!formData.company_email_register.trim()) {
-      errors.email_register = "El correo electrónico es obligatorio.";
+      errors.company_email_register = "El correo electrónico es obligatorio.";
     } else if (
       !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(
         formData.company_email_register
       )
     ) {
-      errors.email_register = "Correo electrónico inválido.";
+      errors.company_email_register = "Correo electrónico inválido.";
     }
 
     if (!formData.company_password_register.trim()) {
-      errors.password_register = "La contraseña es obligatoria.";
+      errors.company_password_register = "La contraseña es obligatoria.";
     } else if (formData.company_password_register.length < 8) {
-      errors.password_register = "Debe tener al menos 8 caracteres.";
+      errors.company_password_register = "Debe tener al menos 8 caracteres.";
     }
 
     if (
       formData.company_password_register !== formData.company_password_confirm
     ) {
-      errors.password_confirm = "Las contraseñas no coinciden.";
+      errors.company_password_confirm = "Las contraseñas no coinciden.";
     }
 
     if (!/^(DNI|RUC)$/.test(formData.company_type_doc)) {
-      errors.type_doc = "Debe seleccionar el tipo de documento.";
+      errors.company_type_doc = "Debe seleccionar el tipo de documento.";
     }
 
     if (!formData.company_doc.trim()) {
-      errors.doc = "El número de documento es obligatorio.";
+      errors.company_doc = "El número de documento es obligatorio.";
     } else {
       if (
         formData.company_type_doc === "DNI" &&
         !/^\d{8}$/.test(formData.company_doc)
       ) {
-        errors.doc = "El DNI debe tener 8 dígitos.";
+        errors.company_doc = "El DNI debe tener 8 dígitos.";
       } else if (
         formData.company_type_doc === "RUC" &&
         !/^\d{11}$/.test(formData.company_doc)
       ) {
-        errors.doc = "El RUC debe tener 11 dígitos.";
+        errors.company_doc = "El RUC debe tener 11 dígitos.";
       }
     }
 
@@ -345,18 +356,32 @@ function Login({}: Props) {
     return Object.keys(errors).length === 0;
   };
 
-  const handleChange = useCallback(
-    (
-      e: React.ChangeEvent<
-        HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-      >
-    ) => {
-      e.preventDefault();
-      const { name, value } = e.target;
-      setFormData((prev) => ({ ...prev, [name]: value }));
-    },
-    []
-  );
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+
+    if (name in formErrorLogin) {
+      setFormErrorLogin((prev) => {
+        const { [name]: _, ...rest } = prev;
+        return rest;
+      });
+    } else if (name in formErrorRegisterNatural) {
+      setFormErrorRegisterNatural((prev) => {
+        const { [name]: _, ...rest } = prev;
+        return rest;
+      });
+    } else if (name in formErrorRegisterCompany) {
+      setFormErrorRegisterComapany((prev) => {
+        const { [name]: _, ...rest } = prev;
+        return rest;
+      });
+    }
+  };
 
   //-----------Handle Login-----------//
   const handleLogin = async (event: React.FormEvent) => {
@@ -782,7 +807,7 @@ function Login({}: Props) {
                   onClick={() => {
                     {
                       cleanInputs();
-                      isFormCompany == 0
+                      isFormCompany === 0
                         ? setIsLogin(true)
                         : setIsFormCompany(0);
                     }
@@ -899,7 +924,7 @@ function Login({}: Props) {
                         placeholder="Teléfono"
                         icon={icon_phone}
                         value={formData.natural_telephone1}
-                        error={formErrorRegisterNatural.telephone1}
+                        error={formErrorRegisterNatural.natural_telephone1}
                         onChange={handleChange}
                       />
                       <InputRegister
@@ -908,7 +933,7 @@ function Login({}: Props) {
                         placeholder="Teléfono adicional"
                         icon={icon_phone}
                         value={formData.natural_telephone2}
-                        error={formErrorRegisterNatural.telephone2}
+                        error={formErrorRegisterNatural.natural_telephone2}
                         onChange={handleChange}
                       />
                       <InputRegister
@@ -926,7 +951,7 @@ function Login({}: Props) {
                         placeholder="Correo Electrónico"
                         icon={icon_mail}
                         value={formData.natural_email_register}
-                        error={formErrorRegisterNatural.email_register}
+                        error={formErrorRegisterNatural.natural_email_register}
                         onChange={handleChange}
                       />
                       <div className="flex flex-col space-y-[2px] justify-center items-center relative ">
@@ -955,9 +980,9 @@ function Login({}: Props) {
                             <option value="DNI">DNI</option>
                             <option value="RUC">RUC</option>
                           </select>
-                          {formErrorRegisterNatural.type_doc && (
+                          {formErrorRegisterNatural.natural_type_doc && (
                             <div className="absolute top-full left-0 mt-1 bg-red-100 text-red-600 text-xs px-3 py-1 rounded-md shadow-md z-10">
-                              {formErrorRegisterNatural.type_doc}
+                              {formErrorRegisterNatural.natural_type_doc}
                             </div>
                           )}
                         </div>
@@ -977,7 +1002,7 @@ function Login({}: Props) {
                         }
                         icon={icon_doc}
                         value={formData.natural_doc}
-                        error={formErrorRegisterNatural.doc}
+                        error={formErrorRegisterNatural.natural_doc}
                         onChange={handleChange}
                       />
                       <InputRegister
@@ -987,7 +1012,9 @@ function Login({}: Props) {
                         placeholder="Contraseña"
                         icon={icon_pass_out}
                         value={formData.natural_password_register}
-                        error={formErrorRegisterNatural.password_register}
+                        error={
+                          formErrorRegisterNatural.natural_password_register
+                        }
                         onChange={handleChange}
                       />
                       <InputRegister
@@ -997,7 +1024,9 @@ function Login({}: Props) {
                         placeholder="Confirmar contraseña"
                         icon={icon_pass_vfy}
                         value={formData.natural_password_confirm}
-                        error={formErrorRegisterNatural.password_confirm}
+                        error={
+                          formErrorRegisterNatural.natural_password_confirm
+                        }
                         onChange={handleChange}
                       />
                     </section>
@@ -1037,7 +1066,7 @@ function Login({}: Props) {
                         placeholder="Teléfono"
                         icon={icon_phone}
                         value={formData.company_telephone1}
-                        error={formErrorRegisterCompany.telephone1}
+                        error={formErrorRegisterCompany.company_telephone1}
                         onChange={handleChange}
                       />
                       <InputRegister
@@ -1046,7 +1075,7 @@ function Login({}: Props) {
                         placeholder="Teléfono adicional"
                         icon={icon_phone}
                         value={formData.company_telephone2}
-                        error={formErrorRegisterCompany.telephone2}
+                        error={formErrorRegisterCompany.company_telephone2}
                         onChange={handleChange}
                       />
                       <InputRegister
@@ -1055,7 +1084,7 @@ function Login({}: Props) {
                         placeholder="Correo Electrónico"
                         icon={icon_mail}
                         value={formData.company_email_register}
-                        error={formErrorRegisterCompany.email_register}
+                        error={formErrorRegisterCompany.company_email_register}
                         onChange={handleChange}
                       />
                       <div className="flex flex-col space-y-[2px] justify-center items-center relative ">
@@ -1084,9 +1113,9 @@ function Login({}: Props) {
                             <option value="DNI">DNI</option>
                             <option value="RUC">RUC</option>
                           </select>
-                          {formErrorRegisterCompany.type_doc && (
+                          {formErrorRegisterCompany.company_type_doc && (
                             <div className="absolute top-full left-0 mt-1 bg-red-100 text-red-600 text-xs px-3 py-1 rounded-md shadow-md z-10">
-                              {formErrorRegisterCompany.type_doc}
+                              {formErrorRegisterCompany.company_type_doc}
                             </div>
                           )}
                         </div>
@@ -1106,7 +1135,7 @@ function Login({}: Props) {
                         }
                         icon={icon_doc}
                         value={formData.company_doc}
-                        error={formErrorRegisterCompany.doc}
+                        error={formErrorRegisterCompany.company_doc}
                         onChange={handleChange}
                       />
                       <InputRegister
@@ -1116,7 +1145,9 @@ function Login({}: Props) {
                         placeholder="Contraseña"
                         icon={icon_pass_out}
                         value={formData.company_password_register}
-                        error={formErrorRegisterCompany.password_register}
+                        error={
+                          formErrorRegisterCompany.company_password_register
+                        }
                         onChange={handleChange}
                       />
                       <InputRegister
@@ -1126,7 +1157,9 @@ function Login({}: Props) {
                         placeholder="Confirmar contraseña"
                         icon={icon_pass_vfy}
                         value={formData.company_password_confirm}
-                        error={formErrorRegisterCompany.password_confirm}
+                        error={
+                          formErrorRegisterCompany.company_password_confirm
+                        }
                         onChange={handleChange}
                       />
                     </section>
