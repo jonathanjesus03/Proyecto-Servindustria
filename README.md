@@ -36,6 +36,7 @@ El propósito principal de esta aplicación es facilitar la gestión de inventar
 │       │   └── test/           # Pruebas unitarias
 │       └── target/             # Archivos generados por Maven
 └── screenshots/                # Capturas de pantalla del proyecto
+```
 
 ## Tecnologías Utilizadas
 
@@ -46,7 +47,6 @@ El propósito principal de esta aplicación es facilitar la gestión de inventar
 - **React Router**: Enrutamiento dinámico.
 - **Vite**: Herramienta de construcción rápida.
 - **EmailJS**: Para enviar correos electrónicos (por ejemplo, desde formularios).
-```
 ### Backend (Server)
 - **Java (Spring Boot)**: Framework para construir la API RESTful.
 - **JWT**: Autenticación basada en tokens.
