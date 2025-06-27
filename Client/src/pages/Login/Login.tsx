@@ -15,7 +15,7 @@ import icon_gender from "../../assets/Images/Icons/filled/gender_icon.svg";
 
 import InputRegister from "./components/inputRegister";
 
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import { Button } from "@material-tailwind/react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "./context/AuthContext";

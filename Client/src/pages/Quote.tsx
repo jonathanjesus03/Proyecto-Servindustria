@@ -1,10 +1,8 @@
-import { useRef } from "react";
 import Navbar from "../components/navbar/Navbar";
 import { useCart } from "./Cart/Hook/useCart";
 type Props = {};
 
 const Quote = ({}: Props) => {
-  const formRef = useRef<HTMLFormElement>(null);
   const { cart, clearCart, addToCart } = useCart();
 
   const handleCreateQuote = async () => {
