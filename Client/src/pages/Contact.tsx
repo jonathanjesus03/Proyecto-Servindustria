@@ -5,20 +5,21 @@ import emailjs from "emailjs-com";
 
 function Contact() {
   const [formData, setFormData] = useState({
-    nombre: "",
+    name: "",
     email: "",
-    telefono: "",
-    ubicacion: "",
-    asunto: "",
-    requerimiento: "",
+    number: "",
+    location: "",
+    subject: "",
+    requirement: "",
   });
 
   type FormError = {
-    nombre?: string;
+    name?: string;
     email?: string;
-    ubicación?: string;
-    asunto?: string;
-    requerimiento?: string;
+    location?: string;
+    subject?: string;
+    number?: string;
+    requirement?: string;
   };
 
   const [formError, setFormError] = useState<FormError>({});
@@ -32,22 +33,25 @@ function Contact() {
       errors.email = "Ingrese un correo válido.";
     }
 
-    if (!formData.nombre.trim()) {
-      errors.nombre = "El nombre electrónico es obligatorio.";
+    if (!formData.name.trim()) {
+      errors.name = "El name es obligatorio.";
     }
 
-    if (!formData.asunto.trim()) {
-      errors.asunto = "El asunto es obligatorio.";
+    if (!formData.subject.trim()) {
+      errors.subject = "El asunto es obligatorio.";
     }
-
-    if (!formData.requerimiento.trim()) {
-      errors.asunto = "El requerimiento es obligatorio.";
+    if (!/^\d+$/.test(formData.number)) {
+      errors.number = "El número es obligatorio.";
     }
-    if (!formData.ubicacion.trim()) {
-      errors.nombre = "La ubicación es obligatoria.";
+    if (!formData.requirement.trim()) {
+      errors.requirement = "El requerimiento es obligatorio.";
+    }
+    if (!formData.location.trim()) {
+      errors.location = "La ubicación es obligatoria.";
     }
 
     setFormError(errors);
+    console.log(errors);
     return Object.keys(errors).length === 0;
   };
 
@@ -76,7 +80,7 @@ function Contact() {
       .then(
         (result) => {
           console.log("Correo Enviado " + result.text);
-          alert("¡Mensaje enviado!");
+          alert("¡Formulario enviado!");
         },
         (error) => {
           console.log("Error: ", error.text);
@@ -84,7 +88,14 @@ function Contact() {
       );
 
     console.log(formData);
-    alert("Formulario enviado correctamente!");
+    setFormData({
+      name: "",
+      email: "",
+      number: "",
+      location: "",
+      subject: "",
+      requirement: "",
+    });
   };
 
   return (
@@ -104,26 +115,30 @@ function Contact() {
         <section className="flex justify-center space-x-10">
           <div className="w-full lg:w-1/2 p-5 bg-white shadow-lg rounded-xl">
             <form onSubmit={handleSubmit} className="space-y-5">
-              <div>
+              <div className="relative">
                 <label
-                  htmlFor="nombre"
+                  htmlFor="name"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Nombre/Razón Social (Importante)
+                  name/Razón Social (Importante)
                 </label>
                 <input
                   type="text"
-                  id="nombre"
-                  name="nombre"
-                  value={formData.nombre}
+                  id="name"
+                  name="name"
+                  value={formData.name}
                   onChange={handleChange}
-                  required
                   className="mt-1 block w-full px-4 py-2 bg-gray-100 rounded-md border border-gray-300"
-                  placeholder="Ingresa tu nombre o razón social"
+                  placeholder="Ingresa tu name o razón social"
                 />
+                {formError.name && (
+                  <div className="absolute top-full left-0 mt-1 bg-red-100 text-red-600 text-xs px-3 py-1 rounded-md shadow-md z-10">
+                    {formError.name}
+                  </div>
+                )}
               </div>
 
-              <div>
+              <div className="relative">
                 <label
                   htmlFor="email"
                   className="block text-sm font-medium text-gray-700"
@@ -136,46 +151,54 @@ function Contact() {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  required
                   className="mt-1 block w-full px-4 py-2 bg-gray-100 rounded-md border border-gray-300"
                   placeholder="Ingresa tu correo electrónico"
                 />
+                {formError.email && (
+                  <div className="absolute top-full left-0 mt-1 bg-red-100 text-red-600 text-xs px-3 py-1 rounded-md shadow-md z-10">
+                    {formError.email}
+                  </div>
+                )}
               </div>
 
-              <div>
+              <div className="relative">
                 <label
-                  htmlFor="telefono"
+                  htmlFor="number"
                   className="block text-sm font-medium text-gray-700"
                 >
                   Su Teléfono (Importante)
                 </label>
                 <input
                   type="number"
-                  id="telefono"
-                  name="telefono"
-                  value={formData.telefono}
+                  id="number"
+                  name="number"
+                  value={formData.number}
                   onChange={handleChange}
-                  required
                   className="mt-1 block w-full px-4 py-2 bg-gray-100 rounded-md border border-gray-300"
                   placeholder="Ingresa tu número de teléfono"
                 />
+                {formError.number && (
+                  <div className="absolute top-full left-0 mt-1 bg-red-100 text-red-600 text-xs px-3 py-1 rounded-md shadow-md z-10">
+                    {formError.number}
+                  </div>
+                )}
               </div>
 
-              <div>
+              <div className="relative">
                 <label
-                  htmlFor="ubicacion"
+                  htmlFor="location"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Seleccione su Ubicación
+                  Seleccione su location
                 </label>
                 <select
-                  id="ubicacion"
-                  name="ubicacion"
-                  value={formData.ubicacion}
+                  id="location"
+                  name="location"
+                  value={formData.location}
                   onChange={handleChange}
-                  required
                   className="mt-1 block w-full px-4 py-2 bg-gray-100 rounded-md border border-gray-300"
                 >
+                  <option value="">Seleccione una distrito</option>
                   <option value="Barranco">Barranco</option>
                   <option value="Miraflores">Miraflores</option>
                   <option value="San Isidro">San Isidro</option>
@@ -189,43 +212,57 @@ function Contact() {
                   <option value="Puente Piedra">Puente Piedra</option>
                   <option value="Independecia">Independencia</option>
                 </select>
+
+                {formError.location && (
+                  <div className="absolute top-full left-0 mt-1 bg-red-100 text-red-600 text-xs px-3 py-1 rounded-md shadow-md z-10">
+                    {formError.location}
+                  </div>
+                )}
               </div>
 
-              <div>
+              <div className="relative">
                 <label
-                  htmlFor="asunto"
+                  htmlFor="subject"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Asunto
+                  subject
                 </label>
                 <input
                   type="text"
-                  id="asunto"
-                  name="asunto"
-                  value={formData.asunto}
+                  id="subject"
+                  name="subject"
+                  value={formData.subject}
                   onChange={handleChange}
-                  required
                   className="mt-1 block w-full px-4 py-2 bg-gray-100 rounded-md border border-gray-300"
-                  placeholder="Asunto de tu mensaje"
+                  placeholder="subject de tu mensaje"
                 />
+                {formError.subject && (
+                  <div className="absolute top-full left-0 mt-1 bg-red-100 text-red-600 text-xs px-3 py-1 rounded-md shadow-md z-10">
+                    {formError.subject}
+                  </div>
+                )}
               </div>
 
-              <div>
+              <div className="relative">
                 <label
-                  htmlFor="requerimiento"
+                  htmlFor="requirement"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  Escriba su requerimiento
+                  Escriba su requirement
                 </label>
                 <textarea
-                  id="requerimiento"
-                  name="requerimiento"
-                  value={formData.requerimiento}
+                  id="requirement"
+                  name="requirement"
+                  value={formData.requirement}
                   onChange={handleChange}
-                  required
                   className="mt-1 block w-full px-4 py-2 bg-gray-100 rounded-md border border-gray-300"
-                  placeholder="Describe tu requerimiento"
+                  placeholder="Describe tu requirement"
                 />
+                {formError.requirement && (
+                  <div className="absolute top-full left-0 mt-1 bg-red-100 text-red-600 text-xs px-3 py-1 rounded-md shadow-md z-10">
+                    {formError.requirement}
+                  </div>
+                )}
               </div>
 
               <div className="flex justify-center mt-4">
@@ -242,7 +279,7 @@ function Contact() {
             </form>
           </div>
 
-          {/* Mapa de Ubicación */}
+          {/* Mapa de location */}
           <div className="hidden lg:block w-full lg:w-1/2 bg-white shadow-lg rounded-xl space-y-6 p-6">
             <div className="text-center space-y-5">
               <h2 className="text-xl font-semibold text-[#FE3051]">Ubícanos</h2>

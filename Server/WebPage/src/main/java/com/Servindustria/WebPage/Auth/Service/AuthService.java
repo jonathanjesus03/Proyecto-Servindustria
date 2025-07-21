@@ -3,6 +3,7 @@ package com.Servindustria.WebPage.Auth.Service;
 import java.util.Optional;
 import java.util.UUID;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseCookie;
@@ -28,7 +29,9 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class AuthService {
+public class AuthService{
+
+    private static final org.slf4j.Logger logger = LoggerFactory.getLogger(AuthService.class);
 
     private final ClientAccountRepository userRepository;
     private final JwtService jwtService;
@@ -36,8 +39,9 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
 
     public ResponseEntity<AuthResponse> login(LoginRequest request) {
+        logger.info("Intentando autenticación para el usuario: {}", request.getEmail());
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
-        System.out.println("Autenticación exitosa para el usuario: " + request.getEmail());
+        logger.info("Autenticación exitosa para el usuario: {}", request.getEmail());
         UserDetails user = userRepository.findByEmail(request.getEmail()).orElseThrow();
         String token = jwtService.getToken(user);
 
@@ -54,6 +58,7 @@ public class AuthService {
     }
 
     public ResponseEntity<AuthResponse> register(RegisterRequest request) {
+        logger.info("Intentando registrar usuario con email: {}", request.getEmail());
         validateRegisterRequest(request);
 
         Optional<ClientAccount> existingUser = userRepository.findByEmail(request.getEmail());
@@ -104,6 +109,7 @@ public class AuthService {
         user.setClient(client);
         // Guardar ClientAccount (y Client gracias al cascade en la relación)
         userRepository.save(user);
+        logger.info("Usuario registrado exitosamente: {}", request.getEmail());
 
         // Generar token JWT
         String token = jwtService.getToken(user);

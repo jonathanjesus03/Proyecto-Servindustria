@@ -18,7 +18,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         return http.cors(withDefaults()).csrf(csrf -> csrf.disable())
-                        .authorizeHttpRequests(authRequest -> authRequest.requestMatchers("/img_products/**", "/css/**", "/js/**", "/assets/**").permitAll().requestMatchers("/api/**").permitAll().requestMatchers("/auth/**").permitAll().anyRequest().authenticated()).sessionManagement(sessionManager -> sessionManager.sessionCreationPolicy(SessionCreationPolicy.STATELESS)).build();
+                        .authorizeHttpRequests(authRequest -> authRequest.requestMatchers("/img_products/**", "/css/**", "/js/**", "/assets/**").permitAll().requestMatchers("/api/**").permitAll().requestMatchers("/auth/**").permitAll().requestMatchers("/actuator/prometheus").permitAll().anyRequest().authenticated()).sessionManagement(sessionManager -> sessionManager.sessionCreationPolicy(SessionCreationPolicy.STATELESS)).build();
  
     }
 }

@@ -29,6 +29,10 @@ public class QuoteDetailService {
     private final ServiceRepository serviceRepository;
     private final AfterSalesRepository afterSalesRepository;
 
+    public void createQuoteDetailsBatch(List<QuoteDetail> detalles) {
+        quoteDetailRepository.saveAll(detalles);
+    }
+
     public QuoteDetail createQuoteDetail(QuoteDetailDto quoteDetailDto) {
         Quote quote = quoteRepository.findById(quoteDetailDto.getIdQuote())
             .orElseThrow(() -> new ResourceNotFoundException("Cotización con ID " + quoteDetailDto.getIdQuote() + " no encontrada"));
@@ -47,7 +51,6 @@ public class QuoteDetailService {
             service = serviceRepository.findById(quoteDetailDto.getIdService())
                 .orElseThrow(() -> new ResourceNotFoundException("Service con ID " + quoteDetailDto.getIdService() + " no encontrado"));
         }
-
 
         /* We have to validate PostSell after the advance second presentation
         if (quoteDetailDto.getIdService() != null) {

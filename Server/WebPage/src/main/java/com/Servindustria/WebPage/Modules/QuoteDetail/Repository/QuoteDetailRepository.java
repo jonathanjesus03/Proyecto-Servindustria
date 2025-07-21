@@ -13,4 +13,10 @@ import com.Servindustria.WebPage.Modules.QuoteDetail.Model.QuoteDetail;
 public interface QuoteDetailRepository extends JpaRepository<QuoteDetail, Long>{
     @Query("SELECT qd FROM QuoteDetail qd WHERE qd.quote.id = :quoteId")
     List<QuoteDetail> findByQuoteId(@Param("quoteId") Long quoteId);
+
+    @Query("SELECT qd FROM QuoteDetail qd "
+     + "LEFT JOIN FETCH qd.product "
+     + "LEFT JOIN FETCH qd.service "
+     + "WHERE qd.quote.id = :quoteId")
+    List<QuoteDetail> findByQuoteIdWithProductAndService(@Param("quoteId") Long quoteId);
 }

@@ -59,10 +59,9 @@ public class QuoteDetail {
 
     public void validateExclusivity() {
         long nonNullCount = (product != null ? 1 : 0) +
-                           (service != null ? 1 : 0) +
-                           (afterSales != null ? 1 : 0);
+                           (service != null ? 1 : 0);
         if (nonNullCount != 1) {
-            throw new IllegalStateException("Solo una de las referencias (producto, servicio o postVenta) puede estar presente.");
+            throw new IllegalStateException("Solo una de las referencias (producto o servicio) puede estar presente.");
         }
     }
 }

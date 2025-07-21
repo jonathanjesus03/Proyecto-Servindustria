@@ -51,4 +51,6 @@ public class QuoteDetailMapper {
         quoteDetail.setSubtotal(dto.getUnitaryPrice().multiply(BigDecimal.valueOf(dto.getAmount())));
         return quoteDetail;
     }
+
+
 }

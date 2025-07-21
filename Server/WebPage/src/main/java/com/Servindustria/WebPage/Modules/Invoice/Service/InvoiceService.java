@@ -78,11 +78,7 @@ public class InvoiceService {
         .orElseThrow(() -> new ResourceNotFoundException("Cotización no encontrada"));
         List<QuoteDetail> quoteDetails = quoteDetailRepository.findByQuoteId(quoteId);
 
-        Long lastId = invoiceRepository.findMaxId().orElse(0L);
-        String code = "IV-0" + (lastId + 1);
-
         Invoice invoice = new Invoice();
-        invoice.setCode(code);
         invoice.setQuote(quote);
         invoice.setClient(quote.getClient());
         invoice.setDateEmi(LocalDateTime.now());
@@ -97,9 +93,15 @@ public class InvoiceService {
 
         Invoice savedInvoice = invoiceRepository.save(invoice);
 
+        // Ahora que tienes el ID único, generas el code
+        String code = "IV-" + String.format("%05d", savedInvoice.getId());
+        savedInvoice.setCode(code);
+
+        Invoice savedInvoiceFinal = invoiceRepository.save(savedInvoice);
+
         for (QuoteDetail qd : quoteDetails) {
             InvoiceDetail invoiceDetail = new InvoiceDetail();
-            invoiceDetail.setInvoice(savedInvoice);
+            invoiceDetail.setInvoice(savedInvoiceFinal);
             invoiceDetail.setProduct(qd.getProduct());
             invoiceDetail.setService(qd.getService());
             invoiceDetail.setAfterSales(qd.getAfterSales());
@@ -110,18 +112,18 @@ public class InvoiceService {
     }
 
     try {
-        OutputStream os = new FileOutputStream("C:/Users/Samsung/Desktop/Proyecto-Servindustria/Documents/factura-"+ savedInvoice.getCode() +".xlsx");
-        invoiceDocumentService.generateInvoiceExcel(savedInvoice.getId(), os);
+        OutputStream os = new FileOutputStream("C:/Users/Samsung/Desktop/Proyecto-Servindustria/Documents/factura-"+ savedInvoiceFinal.getCode() +".xlsx");
+        invoiceDocumentService.generateInvoiceExcel(savedInvoiceFinal.getId(), os);
         os.close();
-        OutputStream os2 = new FileOutputStream("C:/Users/Samsung/Desktop/Proyecto-Servindustria/Documents/factura-"+ savedInvoice.getCode() +".pdf");
-        invoiceDocumentService.generateInvoicePdf(savedInvoice.getId(), os2);
+        OutputStream os2 = new FileOutputStream("C:/Users/Samsung/Desktop/Proyecto-Servindustria/Documents/factura-"+ savedInvoiceFinal.getCode() +".pdf");
+        invoiceDocumentService.generateInvoicePdf(savedInvoiceFinal.getId(), os2);
         os2.close();
     
     } catch (IOException e) {
         e.printStackTrace();
     }
 
-    return InvoiceMapper.toDto(savedInvoice);
+    return InvoiceMapper.toDto(savedInvoiceFinal);
 }
 
     public InvoiceDto getById(Long id) {

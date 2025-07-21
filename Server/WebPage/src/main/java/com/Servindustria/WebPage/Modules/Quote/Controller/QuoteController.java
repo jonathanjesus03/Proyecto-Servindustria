@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.Servindustria.WebPage.Modules.Quote.DTO.QuoteDto;
 import com.Servindustria.WebPage.Modules.Quote.DTO.QuoteProductsDto;
+import com.Servindustria.WebPage.Modules.Quote.Service.QuoteAsyncService;
 import com.Servindustria.WebPage.Modules.Quote.Service.QuoteService;
 
 import lombok.RequiredArgsConstructor;
@@ -24,12 +25,13 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/api/quotes")
 public class QuoteController {
     private final QuoteService quoteService;
-
+    private final QuoteAsyncService quoteAsyncService;
     // Create
     @PostMapping
     public ResponseEntity<Void> createQuote(@CookieValue(value = "token") String token , @RequestBody QuoteProductsDto dto) {
-        quoteService.createQuoteWithToken(token, dto);
-        System.out.println(dto);
+        QuoteDto quoteSaved = quoteService.createQuoteWithToken(token, dto);
+        quoteAsyncService.processQuoteAsync(quoteSaved.getId());
+        quoteAsyncService.sendQuoteEmail(quoteSaved.getId());
         return ResponseEntity.ok().build();
     }
 
