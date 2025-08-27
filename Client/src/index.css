@@ -1,0 +1,162 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Quicksand";
+  src: url("./assets/fonts/Quicksand/Quicksand-VariableFont_wght.ttf")
+    format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Mulish";
+  src: url("./assets/fonts/Mulish/Mulish-VariableFont_wght.ttf")
+    format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+}
+
+iframe[src*="landbot"] {
+  bottom: 30px !important;
+  left: 30px !important;
+  right: auto !important;
+}
+
+/* ANIMATION EFFECTS */
+.transition_slap {
+  transition: all 290ms ease-in-out;
+}
+
+.contentLog {
+  @apply lg:transform lg:translate-x-0;
+}
+
+.contentReg {
+  @apply lg:transform lg:translate-x-full;
+}
+
+.page {
+  animation-duration: 0.9s;
+  animation-name: slideinUser;
+}
+
+@keyframes slideinUser {
+  from {
+    opacity: 0;
+    margin-right: -37px;
+  }
+  to {
+    /* Por defecto, termina en estado original */
+  }
+}
+
+/* BOTONES ESTILOS */
+
+.logButton {
+  width: 10rem; /* 36 */
+  height: 3rem; /* 12 */
+  color: #f7fafc; /* text-gray-100 */
+  border-radius: 9999px; /* rounded-full */
+}
+
+.normalButton {
+  width: 7.5rem; /* 30 */
+  height: 2.5rem; /* 10 */
+  color: black;
+  border-radius: 0.125rem; /* rounded-sm */
+}
+
+.catalogButton {
+  width: 10rem; /* 40 */
+  height: 2.5rem; /* 10 */
+  color: #f7fafc;
+  border-radius: 9999px;
+}
+
+.dashButton {
+  width: 15rem; /* 60 */
+  height: 3rem; /* 12 */
+  color: #f7fafc;
+  border-radius: 1.5rem; /* rounded-md */
+}
+
+.chatButton {
+  width: 8rem; /* 32 */
+  height: 55px;
+  font-family: "Mulish", sans-serif;
+  font-size: 21px;
+  font-weight: bold;
+  color: #f7fafc;
+  border-radius: 0.375rem;
+}
+
+/* ESTILOS PARA LOS INPUTS */
+
+.inputLogin {
+  width: 100%;
+  height: 3rem; /* h-12 */
+  border-radius: 9999px;
+  border: 1px solid black;
+  background-color: white;
+  color: #6d6d6d;
+  font-size: 14px;
+  font-family: "Mulish", sans-serif;
+  padding: 1.25rem; /* p-5 */
+  padding-left: 4rem;
+  padding-right: 1.25rem; /* px-5 */
+}
+
+@media (min-width: 768px) {
+  .inputLogin {
+    padding-left: 4.5rem;
+  }
+}
+
+.inputLogin:invalid:not(:placeholder-shown):not(:focus) {
+  background-color: #fee2e2; /* Tailwind red-100 */
+}
+
+/* Usada con .peer para validaciones visuales */
+.inputLogin.peer {
+}
+
+.inputRegister {
+  width: 100%;
+  height: 2.25rem; /* h-6 */
+  border-radius: 9999px;
+  border: 1px solid black;
+  background-color: white;
+  color: #6d6d6d;
+  font-size: 13px;
+  font-family: "Mulish", sans-serif;
+  padding-left: 2rem;
+  padding-right: 1.25rem; /* px-5 */
+}
+
+@media (min-width: 768px) {
+  .inputRegister {
+    padding-left: 2.5rem;
+  }
+}
+
+/* IMÁGENES */
+
+.logoRegister {
+  position: absolute;
+  height: 1.5rem; /* h-6 */
+  width: 1.5rem; /* w-6 */
+  top: auto;
+  bottom: auto;
+  left: 1vh;
+}
+
+.logoLogin {
+  position: absolute;
+  height: 2rem; /* h-8 */
+  width: 2.25rem; /* w-9 */
+  top: auto;
+  bottom: auto;
+  left: 4vh;
+}
