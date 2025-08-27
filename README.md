@@ -165,7 +165,7 @@ Si deseas ver los productos ya registrados y el catalogo completo, puedes ejecut
 ```Ruta
 db/inserts.sql
 ```
-en la bd NegocioWebIntegrado, asi se registrará inventario, catalogo, productos, etc. Y estos aparecerán en el ForntEnd.
+en la bd NegocioWebIntegrado, asi se registrará inventario, catalogo, productos, etc. Y estos aparecerán en el FrontEnd.
 
 ## Uso
 
