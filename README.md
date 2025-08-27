@@ -118,7 +118,7 @@ spring.jpa.database-platform=org.hibernate.dialect.SQLServerDialect
 # Clase del driver JDBC de Microsoft
 spring.datasource.driver-class-name=com.microsoft.sqlserver.jdbc.SQLServerDriver
 spring.datasource.url=jdbc:sqlserver://localhost:1433;databaseName=NegocioIntegrador;encrypt=true;trustServerCertificate=true
-spring.datasource.username='{{USUARIO}}'
+spring.datasource.username=''{{USUARIO}}''
 spring.datasource.password=''{{PASSWORD}}''
 ```
 
@@ -140,7 +140,8 @@ Si ocurre algún error al eliminar el archivo 'target' en WebPage puedes elimina
 \Server\WebPage
 ``` 
 
-``` !NOTA!
+### !NOTA!
+```
 Puedes modificar el puerto en el SQL Server Configuration Manager, en el apartado de SQL Server Network Configuration -> Protocols for SQLEXPRESS -> TCP/IP, puedes modificar el puerto predeterminado al puerto 1433 es la sección de IPAII
 ```
 
